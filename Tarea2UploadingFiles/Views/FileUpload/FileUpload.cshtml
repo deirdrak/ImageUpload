@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "File Upload";
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Upload a File to the Site</h2>
+
+@using (Html.BeginForm("FileUpload","FileUpload", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.ValidationSummary(true)
+    <fieldset class="form-horizontal">
+        <legend><small>This is your profile page, here you can update your account information</small></legend>
+       
+        <label class="control-label">File:</label>
+        <input type="file" name="fileControl" class="input-medium"/>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Upload File</button>
+            @Html.ActionLink("Files List", "GoToFileList","FileUpload",new { @class = "btn btn-inverse" })
+        </div>
+    </fieldset>
+}

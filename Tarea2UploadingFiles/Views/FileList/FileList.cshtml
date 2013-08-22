@@ -1,0 +1,42 @@
+﻿@using BootstrapSupport
+@model System.Collections.Generic.List<Tarea2UploadingFiles.Models.FileModel>
+
+@{
+    ViewBag.Title = "Files List";
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2 style="text-align: center">Files List</h2>
+<br/>
+
+<table class="table table-striped ">
+    <caption></caption>
+    <thead class="text-center">
+        <tr>
+            @foreach (var property in Model[0].VisibleProperties())
+            {
+                <th>
+                    @property.GetLabel().ToSeparatedWords()
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+
+    @{ int index = 0; }
+    @foreach (var model in Model)
+    {
+        ViewData[index.ToString()] = model;
+        <tr>
+            @foreach (var property in model.VisibleProperties())
+            {
+                <td>
+                    @Html.Display(index + "." + property.Name)
+                </td>                    
+            }
+            
+        </tr>
+            index++;
+    }
+
+</table>
